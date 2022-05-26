@@ -2,7 +2,7 @@
 //Adding DB
 
 document.addEventListener('DOMContentLoaded', ()=>{
-    fetch('http://localhost:3000/characters')
+    fetch('https://ghibliapi.herokuapp.com/movies')
     .then(res => res.json())
     .then(data => displayMovies(data))
 
