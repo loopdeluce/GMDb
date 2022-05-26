@@ -4,6 +4,8 @@
 
 For the aspiring Studio Ghibli connoisseur, YGMDb is the perfect way to keep track of which Miyazaki films you have or have not seen and organize them based on which ones were your favorite.
 
+Will be using the Studio Ghibli API: https://ghibliapi.herokuapp.com/films
+
 
 
 ## User Stories
@@ -17,7 +19,7 @@ As a user I can...
     - Description
     - Release date
     - Run time
-  - In the movie detail section, check if they have already seen it and if so...rate the movie (out of 10); once a movie is checked, user can see the movie go to the “watched” list on the bottom of the sidebar
+  - In the movie detail section, check if I have already seen it and if so...rate the movie (out of 10); once a movie is checked, I can see the movie go to the “watched” list section on the bottom of the sidebar
   - Can click on a randomize movie button, that pulls up the movie details of any random movie that hasn’t been seen yet; if the user has seen all the movies there is a surprise
 
 
