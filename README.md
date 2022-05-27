@@ -26,6 +26,6 @@ As a user I can...
 
 ## Wireframe Sketch
 
-<img src='./3f13a386-0629-45c3-b30f-6f3abcbfad3a.png' width=700>
+<img src='./WireframeSketch20220526.png' width=700>
 
 Also can be viewed here: https://whimsical.com/gmbd-MHNY3PxgkEDS4nm6cWfxiE
