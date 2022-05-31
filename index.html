@@ -20,37 +20,40 @@
     <ul id="to-watch-movies"></ul>
    
     <!-- When a movie is rated, if a ul with id = watched-movies exists, add it to the ul, else create the ul and add the movie -->
-    <h3>Unwatched Movies:</h3>
+    <h3>Watched Movies:</h3>
     <ul id="watched-movies"></ul>
       <!-- Movies should be added with a span tag that the encompasses the movie rating; if the movie rating does not exist, add NR -->
       
   </div>
 
   <div id="main">
-    <!-- Movies should be added with all details from the ReadMe-->
-    <h1 id="movie-title"></h1>
-    <h2 id="japanese-title"></h2>
-    <img id="movie-poster"> 
-    <p id="director"></p>
-    <p id="release-date"></p>
-    <p id="run-time"></p>
-    <p id="movie-description"></p>
+      <!-- Movies should be added with all details from the ReadMe-->
+      <h1 id="movie-title"></h1>
+      <h2 id="japanese-title"></h2>
+      <img id="movie-poster"> 
+      <p id="director"></p>
+      <p id="release-date"></p>
+      <p id="run-time"></p>
+      <p id="movie-description"></p>
 
-    <div id="Review Area" >
-      <h2>Rating: <span id='rating-span'></span></h2>
-      <h2>Comments: </h2>
-      <ul id="current-comments"></ul>
-    </div>
+      <div id="watched-check">
+        <label for="watched">Watched Movie</label><br> 
+        <input type="checkbox" id="watched" name="watched" value="Watched" /> 
+      </div>
+    
+      <div id="Review Area" >
+        <h2>Rating: <span id='rating-span'></span></h2>
+        <ul id="current-comments">Comments: </ul>
+      </div>
 
-    <form id="user-review">
-      <label for="watched">Watched Movie</label><br> 
-      <input type="checkbox" id="watched" name="watched" value="Watched" />      
+    <form id="user-review">     
       <label for="rating">Rating: </label>
       <input type="number" name="rating" id="new-rating" />
       <label for="comment">Comment: </label>
       <textarea name="new-comment" id="new-comment"></textarea>
       <input type="submit" value="Submit Review" />
     </form>
+    
   </div>
 
   <div id="footer">

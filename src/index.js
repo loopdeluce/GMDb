@@ -182,9 +182,22 @@ function patchRating(newRating, existingRating, movieId) {
 function displayMovieRating(data){ //puts the rating in the sidebar
 }; 
 
-//Add click event to begin randomize leftover movies
+// //Add click event to begin randomize leftover movies
+
 function addMovieRandomizerEvent(){
 
+    document.querySelector("#randomizer").addEventListener('click', pickRandomMovie)
+
+    function pickRandomMovie(){
+        const toWatchMovies = Array.from(document.querySelector("#to-watch-movies").children)
+        const randomIndex = Math.floor(Math.random() * toWatchMovies.length)
+        let randomId= (toWatchMovies[randomIndex]).dataset.num
+        
+        fetch(`https://ghibliapi.herokuapp.com/films/${randomId}`)
+        .then(res => res.json())
+        .then(data => displayMovieDetails(data))
+        
+        }
 };
 
 //Add click event to begin chain reaction of reseting all user inputted data
@@ -217,3 +230,21 @@ function patchResetData(movieId) {
     })
     .then(resp => resp.json())
 }
+};
+
+// move movies to the watched list
+
+document.querySelector("#watched").addEventListener('click', moveToWatchedList)
+function moveToWatchedList(){
+    let dataTag = document.querySelector("#movie-title").dataset.num
+    console.log(dataTag)
+    const toWatchList = Array.from(document.querySelector("#to-watch-movies").children)
+    console.log(toWatchList)
+    moveMovie = toWatchList.find(m => m.dataset.num === dataTag)
+    document.querySelector("#to-watch-movies").removeChild(moveMovie)
+    document.querySelector("#watched-movies").appendChild(moveMovie)
+
+    
+
+    }
+
