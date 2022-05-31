@@ -16,7 +16,7 @@ function getMovies() {
 function iterateMovies(movies){
     movies.forEach(movie => {
         displayMovie(movie) //Add Movie to the sidebar
-        postMovieReference(movie) //Create the user JSON db
+        //postMovieReference(movie) //Create the user JSON db
     })
 };
 
