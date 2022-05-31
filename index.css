@@ -1,16 +1,18 @@
 
 #header {
     text-align: center;
-    padding: 0.5rem;
+    padding: 20px;
     width: 100%;
     color: black;
-    background-color: rgb(166, 12, 255);
+    background-color: rgb(144, 79, 223);
+    top: 0;
+    font-size: 22px;
   }
 
   #sidebar {
     height: 100%; /* Full-height: remove this if you want "auto" height */
     width: 160px; /* Set the width of the sidebar */
-    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    position: absolute; /* Fixed Sidebar (stay in place on scroll) */
     z-index: 1; /* Stay on top */
     top: 20; /* Stay at the top */
     left: 0;
@@ -19,7 +21,37 @@
     padding-top: 20px;
   }
 
+  #sidebar a:hover {
+    color: #cc26f6;
+  }
+
   #main {
-    margin-left: 160px; /* Same as the width of the sidebar */
+    margin-left: 160px; 
     padding: 0px 10px;
+  }
+
+  #movie-poster{
+    max-width: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #movie-title{
+    text-align: center;
+  }
+
+  #japanese-title{
+    text-align: center;
+  }
+
+  #footer{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  button{
+    background-color: rgb(189, 108, 230);
   }
