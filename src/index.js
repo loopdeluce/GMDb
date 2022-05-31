@@ -229,7 +229,6 @@ function patchResetData(movieId) {
         body: JSON.stringify(resetDict)
     })
     .then(resp => resp.json())
-}
 };
 
 // move movies to the watched list
