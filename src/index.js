@@ -165,5 +165,15 @@ function addResetEvent(){
 
 document.querySelector("#watched").addEventListener('click', moveToWatchedList)
 function moveToWatchedList(){
-    document.querySelector
-}
+    let dataTag = document.querySelector("#movie-title").dataset.num
+    console.log(dataTag)
+    const toWatchList = Array.from(document.querySelector("#to-watch-movies").children)
+    console.log(toWatchList)
+    moveMovie = toWatchList.find(m => m.dataset.num === dataTag)
+    document.querySelector("#to-watch-movies").removeChild(moveMovie)
+    document.querySelector("#watched-movies").appendChild(moveMovie)
+
+    
+
+    }
+
