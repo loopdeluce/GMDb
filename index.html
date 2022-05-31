@@ -36,13 +36,20 @@
       <p id="run-time"></p>
       <p id="movie-description"></p>
 
+
+
+      <div id="Review Area" >
+        <h2>Rating: <span id='rating-span'></span></h2>
+        <ul id="current-comments">Comments: </ul>
+      </div>
+
     <form id="user-review">
       <label for="watched">Watched Movie</label><br> 
       <input type="checkbox" id="watched" name="watched" value="Watched" />      
       <label for="rating">Rating: </label>
       <input type="number" name="rating" id="new-rating" />
       <label for="comment">Comment: </label>
-      <textarea new="new-comment" id="new-comment"></textarea>
+      <textarea name="new-comment" id="new-comment"></textarea>
       <input type="submit" value="Submit Review" />
     </form>
   </div>
