@@ -26,9 +26,8 @@ function displayMovie(movie){
     const movieListItem = document.createElement('li')
     movieListItem.innerHTML = movie.title
     movieListItem.dataset.num = movie.id
-
-movieListItem.addEventListener('click', getDetails)
-movieList.appendChild(movieListItem)
+    movieListItem.addEventListener('click', getDetails)
+    movieList.appendChild(movieListItem)
 }
 
 function getDetails(event){
@@ -48,19 +47,19 @@ function displayMovieDetails(movie){
     document.getElementById('release-date').innerHTML = `Release date: ${movie.release_date}`
     document.getElementById('run-time').innerHTML = `Run Time: ${movie.running_time}`
     document.getElementById('movie-description').innerHTML = movie.description
-
-       // getMovieReview(movie.id)
-    }
+    getMovieReview(movie.id)
+       
+}
 
 
 //Create the user JSON db
 //  function postMovieReference(movie){
-//      console.log(movie);
 
 //     const newMovieForUser = {
 //         id: movie.id,
+//         movieName: movie.title,
 //         watched: null,
-//         rating: null,
+//         rating: 'NR',
 //         comment: [],
 //     }
 
@@ -78,65 +77,110 @@ function getMovieReview(movieId) {
     fetch(`http://localhost:3000/movies/${movieId}`)
     .then(resp => resp.json())
     .then(data => {
-        displayReview(data);
+        displayFullReview(data);
     })
 };
 
+function displayFullReview(data){
+    const rateSpan = document.getElementById('rating-span');
+    rateSpan.textContent = data.rating;
+
+    const commentArrayLength = data.comment.length
+
+    if (commentArrayLength > 0) {
+        removeComments();
+        data.comment.forEach((acomment) => displayComments(acomment));
+    };
+};
+
+function removeComments() {
+    const comments = Array.from(document.getElementById('current-comments').children);
+    comments.forEach((comment)=> comment.remove());
+}
+
+function displayComments(comment) {
+    const ul = document.getElementById('current-comments');
+    const li = document.createElement('li');
+
+    li.textContent = comment;
+    ul.append(li);
+}
 
 //Add submit event for review form
 function addMovieReviewEvent(){
     const form = document.getElementById('user-review');
-    form.addEventListener('submit', parseReview)
+    form.addEventListener('submit', parseReview);
+    //form.reset();
 };
 
 function parseReview(event){
     event.preventDefault();
 
-    // const movieTitle = document.getElementById('');
-    // const movieId = movieTitle.dataset.num.textContent;
-    const movieId = "12cfb892-aac0-4c5b-94af-521852e46d6a"
+    const movieTitle = document.getElementById('movie-title');
+    const movieId = movieTitle.dataset.num;
 
-    let rating = event.target.rating.value;
-    let comment = event.target["new-comment"].value;
+    let newRating = event.target.rating.value;
+    let newComment = event.target["new-comment"].value;
 
-    if (rating === '') {
-        rating = 'NR';
-    }
-
-    if (comment === '') {
-        comment = null;
-    }
-
-    patchReview(rating, comment, movieId);
+    fetch(`http://localhost:3000/movies/${movieId}`)
+    .then(resp => resp.json())
+    .then((data) => {
+        const existingComments = data.comment
+        const existingRating = data.rating
+        patchReviewComment(newRating, existingRating, newComment, existingComments, movieId)
+    })
 }
 
-function patchReview(rating, comment, movieId) {
-    const review = {
-        rating: rating,
-        comment: comment
-    }
+function patchReviewComment(newRating, existingRating, newComment, existingComments, movieId) {
+    
+    if (newComment !== '') {
+    existingComments.push(newComment)
+    };
 
-  fetch(`http://localhost:3000/movies/${movieId}`, {
-    method: "PATCH",
-    headers: {
-        "content-type": "application/json",
-        "Accept": "application/json"
-        },
-    body: JSON.stringify(review)
-    } 
-  )
-  .then(resp => resp.json())
-  .then(data => {
-      //console.log(data);
-      displayMovieRating(data);
-      displayReview(data);
-  })
+    const comments = {comment: existingComments};
+
+    fetch(`http://localhost:3000/movies/${movieId}`, {
+        method: "PATCH",
+        headers: {
+            "content-type": "application/json",
+            "Accept": "application/json"
+            },
+        body: JSON.stringify(comments)
+        } 
+    )
+    .then(resp => resp.json())
+    .then(data => patchRating(newRating, existingRating, movieId))
 };
 
-function displayMovieRating(data){};
+function patchRating(newRating, existingRating, movieId) {
+    let patchRatingDict = {};
 
-function displayReview(data){};
+    if (newRating === '') {
+        patchRatingDict = {rating: existingRating}
+    }
+    else {
+        patchRatingDict = {rating: newRating}
+    }
 
+    fetch(`http://localhost:3000/movies/${movieId}`, {
+        method: "PATCH",
+        headers: {
+            "content-type": "application/json",
+            "Accept": "application/json"
+            },
+        body: JSON.stringify(patchRatingDict)
+        } 
+    )
+    .then(resp => resp.json())
+    .then(data => {
+        displayMovieRating(data); // puts the rating in the sidebar
+        displayFullReview(data)
+        document.getElementById('user-review').reset()
+    })    
+}
+
+function displayMovieRating(data){ //puts the rating in the sidebar
+}; 
 
 // //Add click event to begin randomize leftover movies
 
@@ -158,7 +202,34 @@ function addMovieRandomizerEvent(){
 
 //Add click event to begin chain reaction of reseting all user inputted data
 function addResetEvent(){
+    const btn = document.getElementById('reset');
+    btn.addEventListener('click', iterateToResetMovies)
+};
 
+function iterateToResetMovies(event) {
+    fetch(`http://localhost:3000/movies`)
+    .then(resp => resp.json())
+    .then((data) => data.forEach((movie) => patchResetData(movie.id)))
+    // add in a reset /display the current page with the new details
+};
+
+function patchResetData(movieId) {
+    console.log(movieId)
+    const resetDict = {
+        watched: null,
+        rating: "NR",
+        comment: [] // look at why comments aren't resetting // add in a reset /display
+    };
+
+    fetch(`http://localhost:3000/movies/${movieId}`, {
+        method: 'PATCH',
+        headers: {'content-type': 'application/json',
+        'Accept': 'application/json'
+        }, 
+        body: JSON.stringify(resetDict)
+    })
+    .then(resp => resp.json())
+}
 };
 
 // move movies to the watched list
