@@ -16,7 +16,7 @@ function getMovies() {
 function iterateMovies(movies){
     movies.forEach(movie => {
         displayMovie(movie) //Add Movie to the sidebar
-        postMovieReference(movie) //Create the user JSON db
+        //postMovieReference(movie) //Create the user JSON db
     })
 };
 
@@ -26,25 +26,25 @@ function displayMovie(movie){
 };
 
 //Create the user JSON db
-function postMovieReference(movie){
-    console.log(movie);
+// function postMovieReference(movie){
+//     console.log(movie);
 
-    const newMovieForUser = {
-        movieId: movie.id,
-        watched: null,
-        rating: null,
-        comment: [],
-    }
+//     const newMovieForUser = {
+//         movieId: movie.id,
+//         watched: null,
+//         rating: null,
+//         comment: [],
+//     }
 
-    fetch(`http://localhost:3000/movies`, {
-        method: 'POST',
-        headers: {
-            "content-type": "application/json",
-            "Accept": "application/json"
-        },
-        body: JSON.stringify(newMovieForUser)
-    })
-};
+    // fetch(`http://localhost:3000/movies`, {
+    //     method: 'POST',
+    //     headers: {
+    //         "content-type": "application/json",
+    //         "Accept": "application/json"
+    //     },
+    //     body: JSON.stringify(newMovieForUser)
+    // })
+// };
 
 
 //Add submit event for review form
