@@ -8,7 +8,7 @@ function init(){
 };
 
 function getMovies() {
-    fetch('https://ghibliapi.herokuapp.com/movies')
+    fetch('https://ghibliapi.herokuapp.com/films')
     .then(res => res.json())
     .then(data => iterateMovies(data))
 };
