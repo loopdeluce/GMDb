@@ -2,16 +2,18 @@ document.addEventListener('DOMContentLoaded', init)
 
 function init(){
     getMovies();
+    getUserData();
     addMovieReviewEvent();
     addMovieRandomizerEvent();
     addResetEvent();
-    //pickRandomMovie();
 };
 
 function getMovies() {
     fetch('https://ghibliapi.herokuapp.com/films')
     .then(res => res.json())
-    .then(data => iterateMovies(data))
+    .then(data => {
+        iterateMovies(data)
+    })
 };
 
 function iterateMovies(movies){
@@ -53,7 +55,8 @@ function displayMovie(movie){
 }
 
 function getDetails(event){
-    const movieId = event.target.dataset.num
+    const movieId = event.target.dataset.num;
+
     fetch(`https://ghibliapi.herokuapp.com/films/${movieId}`)
     .then(res => res.json())
     .then(data => displayMovieDetails(data))
@@ -88,9 +91,29 @@ function displayMovieDetails(movie){
 })
 
     getMovieReview(movie.id)
-       
 }
 
+function getUserData() {
+    fetch('http://localhost:3000/movies')
+    .then(res => res.json())
+    .then(data => chooseDefaultMovie(data))
+};
+
+function chooseDefaultMovie(movies) {
+    const unwatchedMovies = movies.filter((movie)=> movie.watched === false);
+    const watchedMovies = movies.filter((movie)=> movie.watched === true);
+    let defaultId
+
+    if (unwatchedMovies.length === 0) {
+        defaultId = watchedMovies[0].id;
+    }
+    else if (unwatchedMovies.length > 0) {
+        defaultId = unwatchedMovies[0].id;
+    };
+
+    const defaultDict = {target:{dataset:{num:defaultId}}};
+    getDetails(defaultDict);
+}
 
 //Create the user JSON db
 //  function postMovieReference(movie){
@@ -230,6 +253,7 @@ function pickRandomMovie(){
     const toWatchMovies = Array.from(document.querySelector("#to-watch-movies").children)
     const randomIndex = Math.floor(Math.random() * toWatchMovies.length)
     let randomId= (toWatchMovies[randomIndex]).dataset.num
+    
     
     fetch(`https://ghibliapi.herokuapp.com/films/${randomId}`)
     .then(res => res.json())
