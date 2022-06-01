@@ -33,6 +33,7 @@ function displayMovie(movie){
     movieListItem.innerHTML = movie.title
     movieListItem.dataset.num = movie.id
     movieListItem.addEventListener('click', getDetails)
+    movieListItem.addEventListener('click', highlightList)
 
     const movieId = movie.id
 
@@ -47,9 +48,22 @@ function displayMovie(movie){
     else{
         toWatchMovieList.appendChild(movieListItem)
     }
+
 })
 
+function highlightList(){
+   let toWatchList = toWatchMovieList.childNodes
+    toWatchList.forEach(movie=> movie.classList.remove('active'))
+    let watchList = watchedMovieList.childNodes
+    watchList.forEach(movie=> movie.classList.remove('active'))
+    if (this.classList.contains('active')){
+        this.classList.remove('active')
+    }
+    else{
+        this.classList.add('active')
+    }
     
+}
 
 
 }
@@ -90,7 +104,11 @@ function displayMovieDetails(movie){
     }
 })
 
+
+
     getMovieReview(movie.id)
+
+
 }
 
 function getUserData() {
