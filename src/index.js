@@ -233,17 +233,27 @@ function patchResetData(movieId) {
 
 // move movies to the watched list
 
-document.querySelector("#watched").addEventListener('click', moveToWatchedList)
-function moveToWatchedList(){
+const watchedbtn = document.querySelector("#watched")
+watchedbtn.addEventListener('change', moveToWatchedList)
+
+function moveToWatchedList(event){
     let dataTag = document.querySelector("#movie-title").dataset.num
-    console.log(dataTag)
+
     const toWatchList = Array.from(document.querySelector("#to-watch-movies").children)
-    console.log(toWatchList)
-    moveMovie = toWatchList.find(m => m.dataset.num === dataTag)
-    document.querySelector("#to-watch-movies").removeChild(moveMovie)
-    document.querySelector("#watched-movies").appendChild(moveMovie)
+    moveMovieDown = toWatchList.find(m => m.dataset.num === dataTag)
 
-    
+    const watchedList = Array.from(document.querySelector("#watched-movies").children)
+    moveMovieUp = watchedList.find(mov=> mov.dataset.num === dataTag)
 
+    if(event.currentTarget.checked){
+        document.querySelector("#watched-movies").appendChild(moveMovieDown)
     }
+    else{
+        document.querySelector("#to-watch-movies").appendChild(moveMovieUp)
+    }
+
+
+}
+    
+    
 
