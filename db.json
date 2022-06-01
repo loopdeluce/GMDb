@@ -10,7 +10,7 @@
     {
       "id": "12cfb892-aac0-4c5b-94af-521852e46d6a",
       "movieName": "Grave of the Fireflies",
-      "watched": false,
+      "watched": true,
       "rating": "NR",
       "comment": []
     },
@@ -24,7 +24,7 @@
     {
       "id": "ea660b10-85c4-4ae3-8a5f-41cea3648e3e",
       "movieName": "Kiki's Delivery Service",
-      "watched": false,
+      "watched": true,
       "rating": "NR",
       "comment": []
     },
@@ -73,14 +73,14 @@
     {
       "id": "112c1e67-726f-40b1-ac17-6974127bb9b9",
       "movieName": "Tales from Earthsea",
-      "watched": false,
+      "watched": true,
       "rating": "NR",
       "comment": []
     },
     {
       "id": "dc2e6bd1-8156-4886-adff-b39e6043af0c",
       "movieName": "Spirited Away",
-      "watched": false,
+      "watched": true,
       "rating": "NR",
       "comment": []
     },
@@ -108,7 +108,7 @@
     {
       "id": "758bf02e-3122-46e0-884e-67cf83df1786",
       "movieName": "Ponyo",
-      "watched": false,
+      "watched": true,
       "rating": "NR",
       "comment": []
     },
