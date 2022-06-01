@@ -68,10 +68,10 @@ function displayMovieDetails(movie){
     document.getElementById('movie-title').dataset.num = movie.id
     document.getElementById('japanese-title').innerHTML = movie.original_title
     document.getElementById('movie-poster').src  = movie.image
-    document.getElementById('director').innerHTML = `Director: ${movie.director}`
-    document.getElementById('release-date').innerHTML = `Release date: ${movie.release_date}`
-    document.getElementById('run-time').innerHTML = `Run Time: ${movie.running_time}`
-    document.getElementById('movie-description').innerHTML = movie.description
+    document.getElementById('director').innerHTML = `<b>Director</b>: ${movie.director}`
+    document.getElementById('release-date').innerHTML = `<b>Release date</b>: ${movie.release_date}`
+    document.getElementById('run-time').innerHTML = `<b>Run Time</b>: ${movie.running_time} mins`
+    document.getElementById('movie-description').innerHTML = `<b>Description</b>: <br> ${movie.description}`
 
     const movieTitle = document.getElementById('movie-title');
     const movieId = movieTitle.dataset.num;
@@ -170,7 +170,7 @@ function displayComments(comment) {
 
 //Add submit event for review form
 function addMovieReviewEvent(){
-    const form = document.getElementById('user-review');
+    const form = document.getElementById('review-form');
     form.addEventListener('submit', parseReview);
     //form.reset();
 };

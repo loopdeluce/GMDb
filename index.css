@@ -7,62 +7,142 @@
 
 body {
   font-family: var(--smaller-text-font-family);
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "nav main"
+    "nav footer";
+  grid-template-columns: 12em 1fr;
+  grid-template-rows: auto 1fr auto;
+  gap: 0 8%
 }
 
 
 #header {
+    grid-area: header;
     text-align: center;
-    padding: 20px;
-    width: 100%;
+    /* padding: 20px;
+    width: 100%; */
     color: black;
     background-color: rgb(144, 79, 223);
     top: 0;
     font-size: 22px;
   }
 
-  #sidebar {
-    height: 100%; /* Full-height: remove this if you want "auto" height */
-    width: 160px; /* Set the width of the sidebar */
-    position: absolute; /* Fixed Sidebar (stay in place on scroll) */
-    z-index: 1; /* Stay on top */
-    top: 20; /* Stay at the top */
-    left: 0;
-    background-color: rgb(255, 255, 255); /* Black */
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 20px;
-  }
+#sidebar {
+  grid-area: nav;
+  /* height: 100%; Full-height: remove this if you want "auto" height */
+  /* width: 160px; Set the width of the sidebar */
+  /* position: absolute; Fixed Sidebar (stay in place on scroll) */
+  /* z-index: 1; Stay on top */
+  /* top: 20; Stay at the top */
+  /* left: 0; */
+  background-color: rgb(255, 255, 255); /* Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  /* padding-top: 20px; */
+}
 
-  #sidebar a:hover {
-    color: #cc26f6;
-  }
+#sidebar a:hover {
+  color: #cc26f6;
+}
 
-  #main {
-    margin-left: 160px; 
-    padding: 0px 10px;
-  }
+#main {
+  grid-area: main;
+  display: grid;
+  grid-template-areas:
+    "details"
+    "user"
+    "form";
+  grid-template-rows: 2fr auto auto;
+}
 
-  #movie-poster{
-    max-width: 200px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
+#movie-details{
+  grid-area: details;
+  display: grid;
+  grid-template-areas: 
+    'etitle etitle'
+    'jtitle jtitle'
+    'poster director'
+    'poster release'
+    'poster run'
+    'poster description';
+  grid-template-columns: 30% 70%;
+  grid-template-rows: 17% 14% 10% 10% 10% 40%;
+}
 
-  #movie-title{
-    text-align: center;
-  }
+#movie-poster{
+  grid-area: poster;
+  max-width: 200px;
+  /* display: block; */
+  /* margin-left: auto;
+  margin-right: auto; */
+}
 
-  #japanese-title{
-    text-align: center;
-  }
+#movie-title{
+  grid-area: etitle;
+  text-align: left;
+}
 
-  #footer{
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-  }
+#japanese-title{
+  grid-area: jtitle;
+  text-align: left;
+}
 
-  button{
-    background-color: rgb(189, 108, 230);
-  }
+#director {
+  grid-area: director;
+}
+
+#release-date{
+  grid-area: release;
+}
+
+#run-time{
+  grid-area: run;
+}
+
+#movie-description{
+  grid-area: description;
+}
+
+#user{
+  grid-area: user;
+  display: grid;
+  grid-template-areas: 
+    'check rating'
+    'comment comment';
+  grid-template-columns: auto auto;
+  grid-template-rows: 50% 50%;
+}
+
+#watched-check {
+  grid-area: check;
+} 
+
+#review-output #existing-rating{
+  grid-area: rating;
+}
+
+#review-div{
+  grid-area: comment;
+  text-align: left;
+}
+
+#watched-check h2{
+  display: inline;
+}
+
+#review-form{
+  grid-area: form;
+}
+
+#footer{
+  grid-area: footer;
+  /* align-items: center; */
+  /* display: flex; */
+  /* justify-content: center; */
+  /* padding: 20px; */
+}
+
+button{
+  background-color: rgb(189, 108, 230);
+}

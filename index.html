@@ -28,29 +28,35 @@
 
   <div id="main">
     <!-- Movies should be added with all details from the ReadMe-->
-    <h1 id="movie-title"></h1>
-    <h2 id="japanese-title"></h2>
-    <img id="movie-poster"> 
-    <p id="director"></p>
-    <p id="release-date"></p>
-    <p id="run-time"></p>
-    <p id="movie-description"></p>
-
-    <div id="watched-check">
-      <label for="watched">Watched Movie</label><br> 
-      <input type="checkbox" id="watched" name="watched" value="Watched" /> 
-    </div>
-  
-    <div id="Review Area" >
-      <h2>Rating: <span id='rating-span'></span></h2>
-      <h2>Comments: </h2>
-      <ul id="current-comments"></ul>
+    <div id='movie-details'>
+      <h1 id="movie-title"></h1>
+      <h2 id="japanese-title"></h2>
+      <img id="movie-poster"> 
+      <p id="director"></p>
+      <p id="release-date"></p>
+      <p id="run-time"></p>
+      <p id="movie-description"></p>
     </div>
 
-    <form id="user-review">     
-      <label for="rating">Rating: </label>
+    <div id="user">
+      <div id="watched-check">
+        <input type="checkbox" id="watched" name="watched" value="Watched" /> 
+        <h2 for="watched">Watched Movie</h2>
+      </div>
+    
+      <div id="review-output" >
+        <h2 id="existing-rating">My Rating: <span id='rating-span'></span></h2>
+        <div id="review-div">
+          <h2>My Reviews: </h2>
+          <ul id="current-comments"></ul>
+        </div>
+      </div>
+    </div>
+
+    <form id="review-form">     
+      <label for="rating">Rate Movie: </label>
       <input type="number" name="rating" id="new-rating" />
-      <label for="comment">Comment: </label>
+      <label for="comment">Add Review: </label>
       <textarea name="new-comment" id="new-comment"></textarea>
       <input type="submit" value="Submit Review" />
     </form>
