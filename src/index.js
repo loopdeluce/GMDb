@@ -5,6 +5,7 @@ function init(){
     addMovieReviewEvent();
     addMovieRandomizerEvent();
     addResetEvent();
+    //pickRandomMovie();
 };
 
 function getMovies() {
@@ -58,7 +59,7 @@ function displayMovieDetails(movie){
 //     const newMovieForUser = {
 //         id: movie.id,
 //         movieName: movie.title,
-//         watched: null,
+//         watched: false,
 //         rating: 'NR',
 //         comment: [],
 //     }
@@ -84,11 +85,10 @@ function getMovieReview(movieId) {
 function displayFullReview(data){
     const rateSpan = document.getElementById('rating-span');
     rateSpan.textContent = data.rating;
-
-    const commentArrayLength = data.comment.length
+    const commentArrayLength = data.comment.length;
+    removeComments();
 
     if (commentArrayLength > 0) {
-        removeComments();
         data.comment.forEach((acomment) => displayComments(acomment));
     };
 };
@@ -132,9 +132,8 @@ function parseReview(event){
 }
 
 function patchReviewComment(newRating, existingRating, newComment, existingComments, movieId) {
-    
     if (newComment !== '') {
-    existingComments.push(newComment)
+        existingComments.push(newComment);
     };
 
     const comments = {comment: existingComments};
@@ -185,19 +184,18 @@ function displayMovieRating(data){ //puts the rating in the sidebar
 // //Add click event to begin randomize leftover movies
 
 function addMovieRandomizerEvent(){
-
     document.querySelector("#randomizer").addEventListener('click', pickRandomMovie)
+};
 
-    function pickRandomMovie(){
-        const toWatchMovies = Array.from(document.querySelector("#to-watch-movies").children)
-        const randomIndex = Math.floor(Math.random() * toWatchMovies.length)
-        let randomId= (toWatchMovies[randomIndex]).dataset.num
-        
-        fetch(`https://ghibliapi.herokuapp.com/films/${randomId}`)
-        .then(res => res.json())
-        .then(data => displayMovieDetails(data))
-        
-        }
+function pickRandomMovie(){
+    const toWatchMovies = Array.from(document.querySelector("#to-watch-movies").children)
+    const randomIndex = Math.floor(Math.random() * toWatchMovies.length)
+    let randomId= (toWatchMovies[randomIndex]).dataset.num
+    
+    fetch(`https://ghibliapi.herokuapp.com/films/${randomId}`)
+    .then(res => res.json())
+    .then(data => displayMovieDetails(data))
+    
 };
 
 //Add click event to begin chain reaction of reseting all user inputted data
@@ -209,14 +207,16 @@ function addResetEvent(){
 function iterateToResetMovies(event) {
     fetch(`http://localhost:3000/movies`)
     .then(resp => resp.json())
-    .then((data) => data.forEach((movie) => patchResetData(movie.id)))
+    .then((data) => {
+        data.forEach((movie) => patchResetData(movie.id))
+        return data
+    })
     // add in a reset /display the current page with the new details
 };
 
 function patchResetData(movieId) {
-    console.log(movieId)
     const resetDict = {
-        watched: null,
+        watched: false,
         rating: "NR",
         comment: [] // look at why comments aren't resetting // add in a reset /display
     };
@@ -229,7 +229,16 @@ function patchResetData(movieId) {
         body: JSON.stringify(resetDict)
     })
     .then(resp => resp.json())
+    .then((data) => resetDisplayMovieDetails(data))
 };
+
+function resetDisplayMovieDetails(data) {
+    const displayID = document.getElementById("movie-title").dataset.num;
+    if (data.id === displayID) {
+        displayFullReview(data)
+    };
+ };
+
 
 // move movies to the watched list
 
@@ -251,9 +260,5 @@ function moveToWatchedList(event){
     else{
         document.querySelector("#to-watch-movies").appendChild(moveMovieUp)
     }
-
-
 }
-    
-    
 
