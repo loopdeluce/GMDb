@@ -23,12 +23,33 @@ function iterateMovies(movies){
 
 //Adding Movie to sidebar
 function displayMovie(movie){
-    const movieList = document.getElementById('to-watch-movies')
+    const toWatchMovieList = document.getElementById('to-watch-movies')
+    const watchedMovieList = document.getElementById('watched-movies')
+
     const movieListItem = document.createElement('li')
+    movieListItem.classList.add('sidebar-titles')
     movieListItem.innerHTML = movie.title
     movieListItem.dataset.num = movie.id
     movieListItem.addEventListener('click', getDetails)
-    movieList.appendChild(movieListItem)
+
+    const movieId = movie.id
+
+    fetch(`http://localhost:3000/movies/${movieId}`)
+    .then(resp => resp.json())
+    .then((data) => {
+        let watchedStatus = data.watched
+    
+    if(watchedStatus === true){
+        watchedMovieList.appendChild(movieListItem)
+    }
+    else{
+        toWatchMovieList.appendChild(movieListItem)
+    }
+})
+
+    
+
+
 }
 
 function getDetails(event){
@@ -48,6 +69,24 @@ function displayMovieDetails(movie){
     document.getElementById('release-date').innerHTML = `Release date: ${movie.release_date}`
     document.getElementById('run-time').innerHTML = `Run Time: ${movie.running_time}`
     document.getElementById('movie-description').innerHTML = movie.description
+
+    const movieTitle = document.getElementById('movie-title');
+    const movieId = movieTitle.dataset.num;
+
+    fetch(`http://localhost:3000/movies/${movieId}`)
+    .then(resp => resp.json())
+    .then((data) => {
+        let watchedStatus = data.watched
+        const watchedBtn = document.getElementById('watched')
+       
+    if(watchedStatus === true){
+        watchedBtn.checked = true
+    }
+    else{
+        watchedBtn.checked = false
+    }
+})
+
     getMovieReview(movie.id)
        
 }
@@ -246,19 +285,58 @@ const watchedbtn = document.querySelector("#watched")
 watchedbtn.addEventListener('change', moveToWatchedList)
 
 function moveToWatchedList(event){
+    const movieTitle = document.getElementById('movie-title');
+    const movieId = movieTitle.dataset.num;
     let dataTag = document.querySelector("#movie-title").dataset.num
 
-    const toWatchList = Array.from(document.querySelector("#to-watch-movies").children)
-    moveMovieDown = toWatchList.find(m => m.dataset.num === dataTag)
 
-    const watchedList = Array.from(document.querySelector("#watched-movies").children)
-    moveMovieUp = watchedList.find(mov=> mov.dataset.num === dataTag)
 
-    if(event.currentTarget.checked){
-        document.querySelector("#watched-movies").appendChild(moveMovieDown)
+    fetch(`http://localhost:3000/movies/${movieId}`)
+    .then(resp => resp.json())
+    .then((data) => {
+        let watchedStatus = data.watched
+  
+    if(event.target.checked){
+        watchedStatus = true
+        patchWatchedBox(watchedStatus, movieId)
     }
     else{
-        document.querySelector("#to-watch-movies").appendChild(moveMovieUp)
+        watchedStatus = false
+        patchWatchedBox(watchedStatus, movieId)
     }
+})
+
+    function patchWatchedBox(watchedStatus, movieId){
+        const watchedDictionary = {
+            watched: watchedStatus
+        }
+    fetch(`http://localhost:3000/movies/${movieId}`, {
+        method: 'PATCH',
+        headers: {'content-type': 'application/json',
+        'Accept': 'application/json'
+        }, 
+        body: JSON.stringify(watchedDictionary)
+    })
+    .then(resp => resp.json())
+    .then((data) => moveMovie(data))
+    }
+
+    function moveMovie(data){
+        const toWatchList = Array.from(document.querySelector("#to-watch-movies").children)
+        moveMovieDown = toWatchList.find(m => m.dataset.num === dataTag)
+        
+    
+        const watchedList = Array.from(document.querySelector("#watched-movies").children)
+        moveMovieUp = watchedList.find(mov=> mov.dataset.num === dataTag)
+        
+        if (data.watched === true){
+            document.querySelector("#watched-movies").appendChild(moveMovieDown)
+    }
+        else{
+            document.querySelector("#to-watch-movies").appendChild(moveMovieUp)
+    }
+        
+    }
+
 }
 
