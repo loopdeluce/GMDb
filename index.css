@@ -7,13 +7,22 @@
 
 body {
   font-family: var(--smaller-text-font-family);
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "nav main"
+    "nav footer";
+  grid-template-columns: 12em 1fr;
+  grid-template-rows: auto 1fr auto;
+  gap: 0 8%
 }
 
 
 #header {
+    grid-area: header;
     text-align: center;
-    padding: 30px;
-    width: 100%;
+    /* padding: 20px;
+    width: 100%; */
     color: black;
     background-color: rgb(144, 79, 223);
     top: 0;
@@ -23,63 +32,134 @@ body {
     background-position: 30%;
   }
 
-  #sidebar {
-    height: 100%; /* Full-height: remove this if you want "auto" height */
-    width: 160px; /* Set the width of the sidebar */
-    position: absolute; /* Fixed Sidebar (stay in place on scroll) */
-    z-index: 1; /* Stay on top */
-    top: 20; /* Stay at the top */
-    left: 0;
-    background-color: rgb(255, 255, 255); /* Black */
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 20px;
-    display: block;
-    border: solid 1px lightgrey;
-  }
+#sidebar {
+  grid-area: nav;
+  /* height: 100%; Full-height: remove this if you want "auto" height */
+  /* width: 160px; Set the width of the sidebar */
+  /* position: absolute; Fixed Sidebar (stay in place on scroll) */
+  /* z-index: 1; Stay on top */
+  /* top: 20; Stay at the top */
+  /* left: 0; */
+  background-color: rgb(255, 255, 255); /* Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  /* padding-top: 20px; */
+  display: block;
+  border: solid 1px lightgrey;
+}
 
-  #sidebar li:hover{
-    color:rgb(144, 79, 223)
-  }
 
-  .active{
-    background-color: rgb(106, 106, 253);
-  }
+#sidebar li:hover{
+  color:rgb(144, 79, 223)
+}
 
-  ul {
-    list-style-type: none;
-    padding: 5px;
-    line-height: 25px;
-  }
+.active{
+  background-color: rgb(106, 106, 253);
+}
 
- 
+ul {
+  list-style-type: none;
+  padding: 5px;
+  line-height: 25px;
+}
 
-  #main {
-    margin-left: 160px; 
-    padding: 0px 10px;
-  }
+#main {
+  grid-area: main;
+  display: grid;
+  grid-template-areas:
+    "details"
+    "user"
+    "form";
+  grid-template-rows: 2fr auto auto;
+}
 
-  #movie-poster{
-    max-width: 200px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
 
-  #movie-title{
-    text-align: center;
-  }
+#movie-details{
+  grid-area: details;
+  display: grid;
+  grid-template-areas: 
+    'etitle etitle'
+    'jtitle jtitle'
+    'poster director'
+    'poster release'
+    'poster run'
+    'poster description';
+  grid-template-columns: 30% 70%;
+  grid-template-rows: 17% 14% 10% 10% 10% 40%;
+}
 
-  #japanese-title{
-    text-align: center;
-  }
+#movie-poster{
+  grid-area: poster;
+  max-width: 200px;
+  /* display: block; */
+  /* margin-left: auto;
+  margin-right: auto; */
+}
 
-  #footer{
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-  }
+#movie-title{
+  grid-area: etitle;
+  text-align: left;
+}
 
-  button{
-    background-color: rgb(189, 108, 230);
-  }
+#japanese-title{
+  grid-area: jtitle;
+  text-align: left;
+}
+
+#director {
+  grid-area: director;
+}
+
+#release-date{
+  grid-area: release;
+}
+
+#run-time{
+  grid-area: run;
+}
+
+#movie-description{
+  grid-area: description;
+}
+
+#user{
+  grid-area: user;
+  display: grid;
+  grid-template-areas: 
+    'check rating'
+    'comment comment';
+  grid-template-columns: auto auto;
+  grid-template-rows: 50% 50%;
+}
+
+#watched-check {
+  grid-area: check;
+} 
+
+#review-output #existing-rating{
+  grid-area: rating;
+}
+
+#review-div{
+  grid-area: comment;
+  text-align: left;
+}
+
+#watched-check h2{
+  display: inline;
+}
+
+#review-form{
+  grid-area: form;
+}
+
+#footer{
+  grid-area: footer;
+  /* align-items: center; */
+  /* display: flex; */
+  /* justify-content: center; */
+  /* padding: 20px; */
+}
+
+button{
+  background-color: rgb(189, 108, 230);
+}
