@@ -108,7 +108,7 @@
     {
       "id": "758bf02e-3122-46e0-884e-67cf83df1786",
       "movieName": "Ponyo",
-      "watched": true,
+      "watched": false,
       "rating": "NR",
       "comment": []
     },
@@ -151,8 +151,10 @@
       "id": "790e0028-a31c-4626-a694-86b7a8cada40",
       "movieName": "Earwig and the Witch",
       "watched": false,
-      "rating": "NR",
-      "comment": []
+      "rating": "8",
+      "comment": [
+        "dfsdsdf"
+      ]
     }
   ]
 }

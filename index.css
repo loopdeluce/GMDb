@@ -70,7 +70,7 @@ ul {
     "details"
     "user"
     "form";
-  grid-template-rows: 2fr auto auto;
+  grid-template-rows: 1fr auto auto;
 }
 
 
@@ -85,12 +85,15 @@ ul {
     'poster run'
     'poster description';
   grid-template-columns: 30% 70%;
-  grid-template-rows: 17% 14% 10% 10% 10% 40%;
+  grid-template-rows: 15% 14% 10% 10% 10% 40%;
+  padding-bottom: 1vh;
+  font-size: 1.5vw;
 }
 
 #movie-poster{
   grid-area: poster;
-  max-width: 200px;
+  max-width: 80%;
+  max-height: 95%
   /* display: block; */
   /* margin-left: auto;
   margin-right: auto; */
@@ -99,6 +102,7 @@ ul {
 #movie-title{
   grid-area: etitle;
   text-align: left;
+  margin-bottom: 0%
 }
 
 #japanese-title{
@@ -126,21 +130,38 @@ ul {
   grid-area: user;
   display: grid;
   grid-template-areas: 
-    'check rating'
-    'comment comment';
-  grid-template-columns: auto auto;
+    'rating check extra'
+    'comment comment comment';
+  grid-template-columns: 15em 20em auto;
   grid-template-rows: 50% 50%;
 }
 
 #watched-check {
   grid-area: check;
+  align-content: center;
+} 
+
+#watched-check input{
+  align-content: center;
+} 
+
+#watched-check h2{
+  align-content: center;
+  display: inline-block;
 } 
 
 #review-output #existing-rating{
   grid-area: rating;
+  margin-top: 0px;
 }
 
 #review-div{
+  grid-area: comment;
+  text-align: left;
+  display: inline-block;
+}
+
+#review-div h2{
   grid-area: comment;
   text-align: left;
 }
