@@ -252,9 +252,8 @@ function patchRating(newRating, existingRating, movieId) {
     .then(resp => resp.json())
     .then(data => {
         //displayMovieRating(data); // puts the rating in the sidebar
-        displayFullReview(data)
-        const form = document.getElementById('review-form')
-        form.reset();
+        displayFullReview(data);
+        document.getElementById('review-form').reset()
     })    
 }
 
@@ -324,7 +323,6 @@ watchedbtn.addEventListener('change', moveToWatchedList)
 function moveToWatchedList(event){
     const movieTitle = document.getElementById('movie-title');
     const movieId = movieTitle.dataset.num;
-    let dataTag = document.querySelector("#movie-title").dataset.num
 
     fetch(`http://localhost:3000/movies/${movieId}`)
     .then(resp => resp.json())
@@ -339,44 +337,45 @@ function moveToWatchedList(event){
             watchedStatus = false
             patchWatchedBox(watchedStatus, movieId)
         }
-    })       
+    })
+
 }
 
 function patchWatchedBox(watchedStatus, movieId){
-    const watchedDictionary = {
+  const watchedDictionary = {
         watched: watchedStatus
     };
-    fetch(`http://localhost:3000/movies/${movieId}`, {
-        method: 'PATCH',
-        headers: {'content-type': 'application/json',
-        'Accept': 'application/json'
-        }, 
-        body: JSON.stringify(watchedDictionary)
+  fetch(`http://localhost:3000/movies/${movieId}`, {
+    method: 'PATCH',
+    headers: {'content-type': 'application/json',
+    'Accept': 'application/json'
+    }, 
+    body: JSON.stringify(watchedDictionary)
+
     })
-    .then(resp => resp.json())
-    .then((data) => moveMovie(data))
+  .then(resp => resp.json())
+  .then((data) => moveMovie(data))
 }
 
 function moveMovie(data){
-    let dataTag = document.querySelector("#movie-title").dataset.num;
+    let dataTag = document.querySelector("#movie-title").dataset.num
     const toWatchList = Array.from(document.querySelector("#to-watch-movies").children)
     moveMovieDown = toWatchList.find(m => m.dataset.num === dataTag)
-    
+
     const watchedList = Array.from(document.querySelector("#watched-movies").children)
     moveMovieUp = watchedList.find(mov=> mov.dataset.num === dataTag)
-    
+
     if (data.watched === true){
         document.querySelector("#watched-movies").appendChild(moveMovieDown)
     }
-    else {
+    else{
         document.querySelector("#to-watch-movies").appendChild(moveMovieUp)
     }
 
-    forceCheckBox(data);
+    confirmCheckBox(data);
 }
 
-function forceCheckBox(data) {
+function confirmCheckBox(data){
     const checkbox = document.getElementById('watched');
     checkbox.checked = data.watched;
 };
-
