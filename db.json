@@ -45,7 +45,7 @@
     {
       "id": "ebbb6b7c-945c-41ee-a792-de0e43191bd8",
       "movieName": "Porco Rosso",
-      "watched": true,
+      "watched": false,
       "rating": "NR",
       "comment": []
     },
