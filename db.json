@@ -17,7 +17,7 @@
     {
       "id": "1b67aa9a-2e4a-45af-ac98-64d6ad15b16c",
       "movieName": "Pom Poko",
-      "watched": false,
+      "watched": true,
       "rating": "NR",
       "comment": []
     },
@@ -45,7 +45,7 @@
     {
       "id": "ebbb6b7c-945c-41ee-a792-de0e43191bd8",
       "movieName": "Porco Rosso",
-      "watched": true,
+      "watched": false,
       "rating": "NR",
       "comment": []
     },
@@ -151,10 +151,8 @@
       "id": "790e0028-a31c-4626-a694-86b7a8cada40",
       "movieName": "Earwig and the Witch",
       "watched": false,
-      "rating": "8",
-      "comment": [
-        "dfsdsdf"
-      ]
+      "rating": "NR",
+      "comment": []
     }
   ]
 }

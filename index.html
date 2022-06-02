@@ -13,7 +13,7 @@
 <body>
   <div id="header">
     <div class="transparentbox">
-      <h1>YGMDb: Your Ghibli Movie Database</h1>
+      <h1>GMDb: Ghibli Movie Database</h1>
     </div>
     
   </div>
@@ -57,11 +57,11 @@
     </div>
 
     <form id="review-form">     
-      <label for="rating">Rate Movie: </label>
+      <label id="rate-movie" for="rating">Rate Movie: </label>
       <input type="number" name="rating" id="new-rating" />
       <label for="comment">Add Review: </label>
       <textarea name="new-comment" id="new-comment"></textarea>
-      <input type="submit" value="Submit Review" />
+      <input class = "button" type="submit" value="Submit Review" />
       <hr>
     </form>
     
@@ -72,7 +72,7 @@
   <div id="footer">
    
     <button class="button" id="randomizer">Pick A Movie!</button>
-    <button class="button" id="reset">Reset User Movie Details</button>
+    <button class="button" id="reset">Reset Movie Details</button>
   </div>
 
 
