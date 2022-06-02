@@ -67,8 +67,10 @@
       "id": "45204234-adfd-45cb-a505-a8e7a676b114",
       "movieName": "My Neighbors the Yamadas",
       "watched": false,
-      "rating": "NR",
-      "comment": []
+      "rating": "10",
+      "comment": [
+        "yayyuh"
+      ]
     },
     {
       "id": "112c1e67-726f-40b1-ac17-6974127bb9b9",
@@ -116,15 +118,19 @@
       "id": "578ae244-7750-4d9f-867b-f3cd3d6fecf4",
       "movieName": "The Tale of the Princess Kaguya",
       "watched": false,
-      "rating": "NR",
-      "comment": []
+      "rating": "6",
+      "comment": [
+        "werwe"
+      ]
     },
     {
       "id": "5fdfb320-2a02-49a7-94ff-5ca418cae602",
       "movieName": "When Marnie Was There",
       "watched": false,
-      "rating": "NR",
-      "comment": []
+      "rating": "2000",
+      "comment": [
+        "love it"
+      ]
     },
     {
       "id": "45db04e4-304a-4933-9823-33f389e8d74d",
