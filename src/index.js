@@ -190,7 +190,6 @@ function displayComments(comment) {
 function addMovieReviewEvent(){
     const form = document.getElementById('review-form');
     form.addEventListener('submit', parseReview);
-    //form.reset();
 };
 
 function parseReview(event){
@@ -252,14 +251,15 @@ function patchRating(newRating, existingRating, movieId) {
     )
     .then(resp => resp.json())
     .then(data => {
-        displayMovieRating(data); // puts the rating in the sidebar
+        //displayMovieRating(data); // puts the rating in the sidebar
         displayFullReview(data)
-        document.getElementById('user-review').reset()
+        const form = document.getElementById('review-form')
+        form.reset();
     })    
 }
 
-function displayMovieRating(data){ //puts the rating in the sidebar
-}; 
+// function displayMovieRating(data){ //puts the rating in the sidebar
+// }; 
 
 // //Add click event to begin randomize leftover movies
 
@@ -282,20 +282,12 @@ function pickRandomMovie(){
 //Add click event to begin chain reaction of reseting all user inputted data
 function addResetEvent(){
     const btn = document.getElementById('reset');
-    btn.addEventListener('click', iterateToResetMovies)
+    btn.addEventListener('click', patchResetMovie);
 };
 
-function iterateToResetMovies(event) {
-    fetch(`http://localhost:3000/movies`)
-    .then(resp => resp.json())
-    .then((data) => {
-        data.forEach((movie) => patchResetData(movie.id))
-        return data
-    })
-    // add in a reset /display the current page with the new details
-};
+function patchResetMovie(event) {
+    const movieId = document.getElementById('movie-title').dataset.num;
 
-function patchResetData(movieId) {
     const resetDict = {
         watched: false,
         rating: "NR",
@@ -310,15 +302,18 @@ function patchResetData(movieId) {
         body: JSON.stringify(resetDict)
     })
     .then(resp => resp.json())
-    .then((data) => resetDisplayMovieDetails(data))
+    .then((data) => {
+        displayFullReview(data)
+        moveMovie(data)
+    })
 };
 
-function resetDisplayMovieDetails(data) {
-    const displayID = document.getElementById("movie-title").dataset.num;
-    if (data.id === displayID) {
-        displayFullReview(data)
-    };
- };
+// function resetDisplayMovieDetails(data) {
+//     const displayID = document.getElementById("movie-title").dataset.num;
+//     if (data.id === displayID) {
+//         displayFullReview(data)
+//     };
+//  };
 
 
 // move movies to the watched list
@@ -331,27 +326,26 @@ function moveToWatchedList(event){
     const movieId = movieTitle.dataset.num;
     let dataTag = document.querySelector("#movie-title").dataset.num
 
-
-
     fetch(`http://localhost:3000/movies/${movieId}`)
     .then(resp => resp.json())
     .then((data) => {
         let watchedStatus = data.watched
   
-    if(event.target.checked){
-        watchedStatus = true
-        patchWatchedBox(watchedStatus, movieId)
-    }
-    else{
-        watchedStatus = false
-        patchWatchedBox(watchedStatus, movieId)
-    }
-})
-
-    function patchWatchedBox(watchedStatus, movieId){
-        const watchedDictionary = {
-            watched: watchedStatus
+        if(event.target.checked){
+            watchedStatus = true
+            patchWatchedBox(watchedStatus, movieId)
         }
+        else{
+            watchedStatus = false
+            patchWatchedBox(watchedStatus, movieId)
+        }
+    })       
+}
+
+function patchWatchedBox(watchedStatus, movieId){
+    const watchedDictionary = {
+        watched: watchedStatus
+    };
     fetch(`http://localhost:3000/movies/${movieId}`, {
         method: 'PATCH',
         headers: {'content-type': 'application/json',
@@ -361,24 +355,28 @@ function moveToWatchedList(event){
     })
     .then(resp => resp.json())
     .then((data) => moveMovie(data))
-    }
-
-    function moveMovie(data){
-        const toWatchList = Array.from(document.querySelector("#to-watch-movies").children)
-        moveMovieDown = toWatchList.find(m => m.dataset.num === dataTag)
-        
-    
-        const watchedList = Array.from(document.querySelector("#watched-movies").children)
-        moveMovieUp = watchedList.find(mov=> mov.dataset.num === dataTag)
-        
-        if (data.watched === true){
-            document.querySelector("#watched-movies").appendChild(moveMovieDown)
-    }
-        else{
-            document.querySelector("#to-watch-movies").appendChild(moveMovieUp)
-    }
-        
-    }
-
 }
+
+function moveMovie(data){
+    let dataTag = document.querySelector("#movie-title").dataset.num;
+    const toWatchList = Array.from(document.querySelector("#to-watch-movies").children)
+    moveMovieDown = toWatchList.find(m => m.dataset.num === dataTag)
+    
+    const watchedList = Array.from(document.querySelector("#watched-movies").children)
+    moveMovieUp = watchedList.find(mov=> mov.dataset.num === dataTag)
+    
+    if (data.watched === true){
+        document.querySelector("#watched-movies").appendChild(moveMovieDown)
+    }
+    else {
+        document.querySelector("#to-watch-movies").appendChild(moveMovieUp)
+    }
+
+    forceCheckBox(data);
+}
+
+function forceCheckBox(data) {
+    const checkbox = document.getElementById('watched');
+    checkbox.checked = data.watched;
+};
 
