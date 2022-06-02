@@ -251,14 +251,14 @@ function patchRating(newRating, existingRating, movieId) {
     )
     .then(resp => resp.json())
     .then(data => {
-        displayMovieRating(data); // puts the rating in the sidebar
-        displayFullReview(data)
+        //displayMovieRating(data); // puts the rating in the sidebar
+        displayFullReview(data);
         document.getElementById('review-form').reset()
     })    
 }
 
-function displayMovieRating(data){ //puts the rating in the sidebar
-}; 
+// function displayMovieRating(data){ //puts the rating in the sidebar
+// }; 
 
 // //Add click event to begin randomize leftover movies
 
@@ -281,7 +281,7 @@ function pickRandomMovie(){
 //Add click event to begin chain reaction of reseting all user inputted data
 function addResetEvent(){
     const btn = document.getElementById('reset');
-    btn.addEventListener('click', patchResetMovie)
+    btn.addEventListener('click', patchResetMovie);
 };
 
 function patchResetMovie(event) {
@@ -338,21 +338,23 @@ function moveToWatchedList(event){
             patchWatchedBox(watchedStatus, movieId)
         }
     })
+
 }
 
 function patchWatchedBox(watchedStatus, movieId){
-    const watchedDictionary = {
+  const watchedDictionary = {
         watched: watchedStatus
-    }
-fetch(`http://localhost:3000/movies/${movieId}`, {
+    };
+  fetch(`http://localhost:3000/movies/${movieId}`, {
     method: 'PATCH',
     headers: {'content-type': 'application/json',
     'Accept': 'application/json'
     }, 
     body: JSON.stringify(watchedDictionary)
+
     })
-    .then(resp => resp.json())
-    .then((data) => moveMovie(data))
+  .then(resp => resp.json())
+  .then((data) => moveMovie(data))
 }
 
 function moveMovie(data){
@@ -376,5 +378,4 @@ function moveMovie(data){
 function confirmCheckBox(data){
     const checkbox = document.getElementById('watched');
     checkbox.checked = data.watched;
-}
-
+};

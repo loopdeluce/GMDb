@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
 
 :root{
-  --smaller-text-font-family: "Inter", sans-serif;
+  --smaller-text-font-family: "Optima", sans-serif;
 }
 
 body {
@@ -40,11 +40,11 @@ body {
   /* z-index: 1; Stay on top */
   /* top: 20; Stay at the top */
   /* left: 0; */
-  background-color: rgb(255, 255, 255); /* Black */
+  background-color: rgba(212, 215, 227, 0.792); /* Black */
   overflow-x: hidden; /* Disable horizontal scroll */
   /* padding-top: 20px; */
   display: block;
-  border: solid 1px lightgrey;
+  border: solid 1px rgb(0, 0, 0);
 }
 
 
@@ -186,7 +186,7 @@ ul {
 div.transparentbox {
   opacity: 0.55;
   margin: 40px;
-  padding: 20px;
+  padding: 15px;
   border: 1px solid black;
   background-color: #ffffff;
   filter: alpha(opacity=40); /* This is for IE8 and other earlier browsers */
@@ -211,10 +211,10 @@ div.transparentbox {
   margin-right: 10px;
   margin-left: 10px;
   margin: 0 auto;
-  height: 50px;
-  min-width: 100px;
+  height: 35px;
+  min-width: 80px;
   max-width: 300px;
-  width: 50%;
+  width: 30%;
   background: #348AA7;
   border: none;
   outline: none;
@@ -237,4 +237,9 @@ div.transparentbox {
   transform: translateY(4px);
   border-bottom-width: 2px;
   box-shadow: none;
+}
+
+#rate-movie{
+  right:30%;
+  
 }
