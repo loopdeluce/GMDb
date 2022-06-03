@@ -68,9 +68,8 @@ ul {
   display: grid;
   grid-template-areas:
     "details"
-    "user"
-    "form";
-  grid-template-rows: 1fr auto auto;
+    "user";
+  grid-template-rows: 1fr auto;
 }
 
 
@@ -126,19 +125,19 @@ ul {
   grid-area: description;
 }
 
-#user{
+#all-user{
   grid-area: user;
   display: grid;
   grid-template-areas: 
-    'rating check extra'
-    'comment comment comment';
-  grid-template-columns: 15em 20em auto;
+    'rating form '
+    'comment form';
+  grid-template-columns:auto 25em;
   grid-template-rows: 50% 50%;
 }
 
 #watched-check {
   grid-area: check;
-  align-content: center;
+  align-content: right;
 } 
 
 #watched-check input{
@@ -153,16 +152,27 @@ ul {
 #review-output #existing-rating{
   grid-area: rating;
   margin-top: 0px;
+  margin-bottom: 0px;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  min-height: 1px;
 }
 
 #review-div{
   grid-area: comment;
   text-align: left;
   display: inline-block;
+  margin-top: 0px;
+}
+
+#review-div h2 {
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 #review-div h2{
-  grid-area: comment;
   text-align: left;
 }
 
@@ -172,6 +182,29 @@ ul {
 
 #review-form{
   grid-area: form;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  /* grid-template-areas: 
+  'inputs'
+  'submit-button'; */
+}
+
+#review-form #inputs {
+  grid-area:inputs;
+}
+
+#review-form label {
+  display: block;
+}
+
+#review-form .submit {
+  grid-area: submit-button;
+  transform: translateX(-50%)
+}
+
+.line{
+  display: inline;
 }
 
 #footer{
@@ -205,7 +238,7 @@ div.transparentbox {
   padding: 10px;
 }
 
-.button {
+.footer-button {
   display: block;
   padding: 10px;
   margin-right: 10px;
@@ -239,7 +272,29 @@ div.transparentbox {
   box-shadow: none;
 }
 
-#rate-movie{
-  right:30%;
-  
+.submit {
+  display: block;
+  padding: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin: 0 auto;
+  height: 35px;
+  min-width: 80px;
+  max-width: 300px;
+  width: 50%;
+  background: #348AA7;
+  border: none;
+  outline: none;
+  color: white;
+  font-family: inherit;
+  font-weight: 400;
+  font-size: 20px;
+  border-radius: 3px;
+  box-shadow: 0 5px 0px #348aa7;
+  border-bottom: 2px solid #30809b;
+  text-align: center;
 }
+
+/* #rate-movie{
+  right:30%;
+} */
