@@ -3,9 +3,13 @@
     {
       "id": "2baf70d1-42bb-4437-b551-e5fed5a87abe",
       "movieName": "Castle in the Sky",
-      "watched": false,
-      "rating": "NR",
-      "comment": []
+      "watched": true,
+      "rating": "9",
+      "comment": [
+        "loved it",
+        "this is the best movie",
+        "this is best"
+      ]
     },
     {
       "id": "12cfb892-aac0-4c5b-94af-521852e46d6a",
