@@ -312,3 +312,8 @@ div.transparentbox {
 /* #rate-movie{
   right:30%;
 } */
+
+#footer{
+  border-top: 1px solid black;
+  margin-top: 1vh;
+}
