@@ -199,13 +199,27 @@ ul {
 }
 
 #review-form .submit {
+  margin-top: 1 vh;
   grid-area: submit-button;
   transform: translateX(-50%)
 }
 
-.line{
-  display: inline;
+label {
+  font-size: 2vw;
+  font-weight: 600;
 }
+
+#user {
+  font-size: 1.4vw;
+}
+
+input {
+  margin-bottom: 1.5vh;
+}
+
+/* .line{
+  display: inline;
+} */
 
 #footer{
   grid-area: footer;
