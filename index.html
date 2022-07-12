@@ -1,84 +1,87 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" type="text/css" href="index.css"/>
-  <script defer src="src/index.js"></script>
-</head>
-<body>
-  <div id="header">
-    <div class="transparentbox">
-      <h1>GMDb: Ghibli Movie Database</h1>
-    </div>
-    
-  </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="index.css" />
+    <script type="module" src="modules/index.js"></script>
+  </head>
 
-  <div id="sidebar">
-    <h3>Unwatched Movies:</h3>
-    <ul id="to-watch-movies"></ul>
-   
-    <!-- When a movie is rated, if a ul with id = watched-movies exists, add it to the ul, else create the ul and add the movie -->
-    <h3>Watched Movies:</h3>
-    <ul id="watched-movies"></ul>
+  <body>
+    <div id="header">
+      <div class="transparentbox">
+        <h1>GMDb: Ghibli Movie Database</h1>
+      </div>
+    </div>
+
+    <div id="sidebar">
+      <h3>Unwatched Movies:</h3>
+      <ul id="to-watch-movies"></ul>
+
+      <!-- When a movie is rated, if a ul with id = watched-movies exists, add it to the ul, else create the ul and add the movie -->
+      <h3>Watched Movies:</h3>
+      <ul id="watched-movies"></ul>
       <!-- Movies should be added with a span tag that the encompasses the movie rating; if the movie rating does not exist, add NR -->
-      
-  </div>
-
-  <div id="main">
-    <!-- Movies should be added with all details from the ReadMe-->
-    <div id='movie-details'>
-      <h1 id="movie-title"></h1>
-      <h2 id="japanese-title"></h2>
-      <img id="movie-poster"> 
-      <p id="director"></p>
-      <p id="release-date"></p>
-      <p id="run-time"></p>
-      <p id="movie-description"></p>
     </div>
 
-    <div id="all-user">
-      <div id="user">
-        <div id="watched-check">
-          <input type="checkbox" id="watched" name="watched" value="Watched"  class ="line"/>
-          <h2 for="watched" class= "line">Watched Movie</h2>
-        </div>
-      
-        <div id="review-output" >
-          <h2 id="existing-rating">My Rating: <span id='rating-span'></span>/10</h2>
-          <div id="review-div">
-            <h2>My Reviews: </h2>
-            <ul id="current-comments"></ul>
-          </div>
-        </div>
+    <div id="main">
+      <!-- Movies should be added with all details from the ReadMe-->
+      <div id="movie-details">
+        <h1 id="movie-title"></h1>
+        <h2 id="japanese-title"></h2>
+        <img id="movie-poster" />
+        <p id="director"></p>
+        <p id="release-date"></p>
+        <p id="run-time"></p>
+        <p id="movie-description"></p>
       </div>
 
-      <form id="review-form" class="line">   
-        <div  id = 'inputs'>
-          <label id="rate-movie" for="rating">Rate Movie: </label>
-          <input type="number" name="rating" id="new-rating" />
-          <label for="comment">Add Review: </label>
-          <textarea name="new-comment" id="new-comment"></textarea>
+      <div id="all-user">
+        <div id="user">
+          <div id="watched-check">
+            <input
+              type="checkbox"
+              id="watched"
+              name="watched"
+              value="Watched"
+              class="line"
+            />
+            <h2 for="watched" class="line">Watched Movie</h2>
+          </div>
+
+          <div id="review-output">
+            <h2 id="existing-rating">
+              My Rating: <span id="rating-span"></span>/10
+            </h2>
+            <div id="review-div">
+              <h2>My Reviews:</h2>
+              <ul id="current-comments"></ul>
+            </div>
+          </div>
         </div>
-        <input class = "button submit" type="submit" value="Submit Review" />
-        <!-- <hr> -->
 
-      </form>
+        <form id="review-form" class="line">
+          <div id="inputs">
+            <label id="rate-movie" for="rating">Rate Movie: </label>
+            <input type="number" name="rating" id="new-rating" />
+            <label for="comment">Add Review: </label>
+            <textarea name="new-comment" id="new-comment"></textarea>
+          </div>
+          <input class="button submit" type="submit" value="Submit Review" />
+          <!-- <hr> -->
+        </form>
+      </div>
     </div>
-  </div>
-  <div>
-
-  </div>
-  <div id="footer">
- 
-    <button class="button footer-button" id="randomizer">Pick A Movie!</button>
-    <button class="button footer-button" id="reset">Reset Movie Details</button>
-  </div>
-
-
-</body>
+    <div></div>
+    <div id="footer">
+      <button class="button footer-button" id="randomizer">
+        Pick A Movie!
+      </button>
+      <button class="button footer-button" id="reset">
+        Reset Movie Details
+      </button>
+    </div>
+  </body>
 </html>

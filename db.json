@@ -56,24 +56,29 @@
     {
       "id": "0440483e-ca0e-4120-8c50-4c8cd9b965d6",
       "movieName": "Princess Mononoke",
-      "watched": false,
-      "rating": "NR",
-      "comment": []
+      "watched": true,
+      "rating": "5",
+      "comment": [
+        "yes"
+      ]
     },
     {
       "id": "ff24da26-a969-4f0e-ba1e-a122ead6c6e3",
       "movieName": "Whisper of the Heart",
-      "watched": false,
-      "rating": "NR",
-      "comment": []
+      "watched": true,
+      "rating": "7",
+      "comment": [
+        "its ok"
+      ]
     },
     {
       "id": "45204234-adfd-45cb-a505-a8e7a676b114",
       "movieName": "My Neighbors the Yamadas",
-      "watched": false,
-      "rating": "10",
+      "watched": true,
+      "rating": "7",
       "comment": [
-        "yayyuh"
+        "yayyuh",
+        "Lovied"
       ]
     },
     {
@@ -93,9 +98,11 @@
     {
       "id": "90b72513-afd4-4570-84de-a56c312fdf81",
       "movieName": "The Cat Returns",
-      "watched": false,
-      "rating": "NR",
-      "comment": []
+      "watched": true,
+      "rating": "6",
+      "comment": [
+        "yes"
+      ]
     },
     {
       "id": "2de9426b-914a-4a06-a3a0-5e6d9d3886f6",
@@ -107,9 +114,11 @@
     {
       "id": "cd3d059c-09f4-4ff3-8d63-bc765a5184fa",
       "movieName": "Howl's Moving Castle",
-      "watched": false,
-      "rating": "NR",
-      "comment": []
+      "watched": true,
+      "rating": "8",
+      "comment": [
+        "loved"
+      ]
     },
     {
       "id": "758bf02e-3122-46e0-884e-67cf83df1786",
@@ -153,9 +162,11 @@
     {
       "id": "d868e6ec-c44a-405b-8fa6-f7f0f8cfb500",
       "movieName": "The Red Turtle",
-      "watched": false,
-      "rating": "NR",
-      "comment": []
+      "watched": true,
+      "rating": "6",
+      "comment": [
+        "ok"
+      ]
     },
     {
       "id": "790e0028-a31c-4626-a694-86b7a8cada40",
